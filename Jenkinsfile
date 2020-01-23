@@ -10,5 +10,14 @@ pipeline {
       }
     }
 
+    stage('Test') {
+      steps {
+        dir(path: 'complete') {
+          sh 'mvn test'
+        }
+
+      }
+    }
+
   }
 }
