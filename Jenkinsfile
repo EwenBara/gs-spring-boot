@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        dir(path: 'compile') {
+        dir(path: 'complete') {
           sh 'mvn compile'
         }
 
