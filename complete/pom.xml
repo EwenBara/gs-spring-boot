@@ -18,6 +18,13 @@
 		<java.version>1.8</java.version>
 	</properties>
 
+	<properties>
+		<sonar.projectKey>EwenBara_gs-spring-boot</sonar.projectKey>
+		<sonar.organization>ewenbara</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.login>e1010be90538cedd7fc6e9d2d8409275f18db196</sonar.login>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
