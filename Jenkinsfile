@@ -14,6 +14,7 @@ pipeline {
       steps {
         dir(path: 'complete') {
           sh 'mvn test'
+          junit 'target/surefire-reports/*.xml'
         }
 
       }
@@ -24,7 +25,6 @@ pipeline {
   post {
     always {
       archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
-      junit 'build/reports/**/*.xml'
     }
   }
 }
