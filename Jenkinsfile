@@ -24,7 +24,7 @@ pipeline {
       steps {
         dir(path: 'complete') {
           sh 'mvn package'
-          archive "target/**/*.jar"
+          archiveArtifacts "target/**/*.jar"
         }
       }
     }
