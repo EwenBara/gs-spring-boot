@@ -34,7 +34,8 @@ pipeline {
 
         stage('Version tag') {
           steps {
-            sh 'git tag $(date +%Y%m%d)BC'
+            sh '''git tag $(date +%Y%m%d)BC
+git push --tags'''
           }
         }
 
