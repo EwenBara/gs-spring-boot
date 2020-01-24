@@ -20,12 +20,20 @@ pipeline {
       }
     }
 
+    stage('Code Quality') {
+      steps {
+        dir(path: 'complete') {
+          sh 'mvn sonar:sonar'
+        }
+      }
+    }
+
     stage('Build Candidate') {
       parallel {
         stage('Package') {
           steps {
             dir(path: 'complete') {
-              sh 'mvn package'
+              sh 'mvn -DskipTests package'
               archiveArtifacts 'target/**/*.jar'
             }
 
