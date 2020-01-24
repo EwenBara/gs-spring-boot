@@ -10,7 +10,7 @@ pipeline {
       }
     }
 
-    stage('Test') {
+    stage('Unit test') {
       steps {
         dir(path: 'complete') {
           sh 'mvn test'
@@ -20,12 +20,24 @@ pipeline {
       }
     }
 
-    stage('Package') {
-      steps {
-        dir(path: 'complete') {
-          sh 'mvn package'
-          archiveArtifacts "target/**/*.jar"
+    stage('Build Candidate') {
+      parallel {
+        stage('Package') {
+          steps {
+            dir(path: 'complete') {
+              sh 'mvn package'
+              archiveArtifacts 'target/**/*.jar'
+            }
+
+          }
         }
+
+        stage('Version tag') {
+          steps {
+            sh 'git tag $(date +%Y%m%d)BC'
+          }
+        }
+
       }
     }
 
