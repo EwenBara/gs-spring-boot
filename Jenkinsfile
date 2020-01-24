@@ -20,11 +20,14 @@ pipeline {
       }
     }
 
-  }
-
-  post {
-    always {
-      archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+    stage('Package') {
+      steps {
+        dir(path: 'complete') {
+          sh 'mvn package'
+          archive "target/**/*.jar"
+        }
+      }
     }
+
   }
 }
