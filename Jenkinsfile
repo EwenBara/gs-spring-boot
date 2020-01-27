@@ -14,6 +14,7 @@ pipeline {
       steps {
         dir(path: 'complete') {
           sh 'mvn test'
+          sh 'mvn jacoco:report'
           junit 'target/surefire-reports/*.xml'
         }
 
