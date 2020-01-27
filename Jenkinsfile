@@ -43,9 +43,10 @@ pipeline {
 
         stage('Version tag') {
           steps {
+            sh('git tag ${BUILD_TIMESTAMP}BC')
             withCredentials([usernamePassword(credentialsId: '7c42fcf2-6fd7-408f-942b-bf0581980fca', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-              sh('git tag ${BUILD_TIMESTAMP}BC')
-              sh('git push https://${GIT_PASSWORD}@github.com/EwenBara/gs-spring-boot.git --tags')
+              sh 'git config --local credential.helper "!p() { echo username=\\$GIT_USERNAME; echo password=\\$GIT_PASSWORD; }; p"'
+              sh('git push --tags')
             }
           }
         }
