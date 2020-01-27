@@ -44,9 +44,8 @@ pipeline {
         stage('Version tag') {
           steps {
             withCredentials([usernamePassword(credentialsId: '7c42fcf2-6fd7-408f-942b-bf0581980fca', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-              REMOTE = GIT_URL.split('//')[1]
               sh('git tag ${BUILD_TIMESTAMP}BC')
-              sh('git push https://${GIT_PASSWORD}@${REMOTE} --tags')
+              sh('git push https://${GIT_PASSWORD}@${echo $GIT_URL | sed "s@https://@@"} --tags')
             }
           }
         }
