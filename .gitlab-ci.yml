@@ -1,8 +1,36 @@
 image: "maven"
 
+stages:
+  - build
+  - test
+  - quality
+  - build_candidate
+
 before_script:
   - cd complete
 
 build:
+  stage: build
   script:
     - mvn compile
+
+test:
+  stage: test
+  script:
+    - mvn test
+    - mvn jacoco:report
+
+quality:
+  stage: quality
+  script:
+    - mvn sonar:sonar
+
+package:
+  stage: build_candidate
+  script:
+    - mvn -DskipTests package
+
+tag:
+  stage: build_candidate
+  script:
+    - echo "git tag $(date -I)BC"
