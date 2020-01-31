@@ -13,17 +13,23 @@ build:
   stage: build
   script:
     - mvn compile
+  cache:
+    - target/
 
 test:
   stage: test
   script:
     - mvn test
     - mvn jacoco:report
+  cache:
+    - target/
 
 quality:
   stage: quality
   script:
     - mvn sonar:sonar
+  cache:
+    - target/
 
 package:
   stage: build_candidate
