@@ -6,6 +6,12 @@ stages:
   - quality
   - build_candidate
 
+cache:
+  key: $CI_COMMIT_REF_SLUG
+  path:
+    - complete/target/
+    - .m2
+
 before_script:
   - cd complete
 
@@ -13,23 +19,17 @@ build:
   stage: build
   script:
     - mvn compile
-  cache:
-    - target/
 
 test:
   stage: test
   script:
     - mvn test
     - mvn jacoco:report
-  cache:
-    - target/
 
 quality:
   stage: quality
   script:
     - mvn sonar:sonar
-  cache:
-    - target/
 
 package:
   stage: build_candidate
