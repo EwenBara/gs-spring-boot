@@ -6,6 +6,9 @@ stages:
   - quality
   - build_candidate
 
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
 cache:
   key: $CI_COMMIT_REF_SLUG
   paths:
