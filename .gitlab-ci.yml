@@ -9,7 +9,7 @@ stages:
 cache:
   key: $CI_COMMIT_REF_SLUG
   paths:
-    - complete/.m2
+    - complete/.m2/
     - complete/target/
 
 before_script:
@@ -25,6 +25,9 @@ test:
   script:
     - mvn test
     - mvn jacoco:report
+  artifacts:
+    reports:
+      junit: target/surefire-reports/*.xml
 
 quality:
   stage: quality
@@ -35,6 +38,9 @@ package:
   stage: build_candidate
   script:
     - mvn -DskipTests package
+  artifacts:
+    paths:
+      - target/*.jar
 
 tag:
   stage: build_candidate
