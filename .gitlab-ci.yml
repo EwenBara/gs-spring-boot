@@ -30,7 +30,7 @@ test:
     - mvn jacoco:report
   artifacts:
     reports:
-      junit: complete/target/surefire-reports/*.xml
+      junit: complete/target/surefire-reports/TEST-*.xml
 
 quality:
   stage: quality
