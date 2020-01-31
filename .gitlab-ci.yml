@@ -9,8 +9,8 @@ stages:
 cache:
   key: $CI_COMMIT_REF_SLUG
   paths:
+    - ~/.m2
     - complete/target/
-    - .m2
 
 before_script:
   - cd complete
