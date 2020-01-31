@@ -30,7 +30,7 @@ test:
     - mvn jacoco:report
   artifacts:
     reports:
-      junit: target/surefire-reports/*.xml
+      junit: complete/target/surefire-reports/*.xml
 
 quality:
   stage: quality
@@ -43,7 +43,7 @@ package:
     - mvn -DskipTests package
   artifacts:
     paths:
-      - target/*.jar
+      - complete/target/*.jar
 
 tag:
   stage: build_candidate
