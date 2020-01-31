@@ -1,4 +1,4 @@
-image: ""
+image: "maven"
 
 before_script:
   - cd complete
