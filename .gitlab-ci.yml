@@ -9,7 +9,7 @@ stages:
 cache:
   key: $CI_COMMIT_REF_SLUG
   paths:
-    - ~/.m2
+    - complete/.m2
     - complete/target/
 
 before_script:
