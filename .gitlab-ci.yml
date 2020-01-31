@@ -1,0 +1,8 @@
+image: ""
+
+before_script:
+  - cd complete
+
+build:
+  script:
+    - mvn compile
