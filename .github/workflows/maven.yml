@@ -11,7 +11,7 @@ jobs:
     - uses: actions/cache@v1.1.0
       with:
         path: complete/target/
-        key: ${{ GITHUB_SHA }}
+        key: ${{ env.GITHUB_SHA }}
     - name: Build with Maven
       working-directory: complete/
       run:  mvn -B compile
@@ -26,7 +26,7 @@ jobs:
     - uses: actions/cache@v1.1.0
       with:
         path: complete/target/
-        key: ${{ GITHUB_SHA }}
+        key: ${{ env.GITHUB_SHA }}
     - name: Unit test
       working-directory: complete/
       run: mvn -B test
@@ -44,7 +44,7 @@ jobs:
     - uses: actions/cache@v1.1.0
       with:
         path: complete/target/
-        key: ${{ GITHUB_SHA }}
+        key: ${{ env.GITHUB_SHA }}
     - name: Code Quality
       run: mvn -B sonar:sonar
       working-directory: complete/
