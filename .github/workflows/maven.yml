@@ -4,7 +4,6 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -20,8 +19,10 @@ jobs:
     - name: Build with Maven
       working-directory: complete/
       run:  mvn -B compile
-  unit-test:
-    
+  
+  
+  unit_test:
+    needs: [build]
     runs-on: ubuntu-latest
 
     steps:
@@ -36,8 +37,21 @@ jobs:
         java-version: 1.8
     - name: Unit test
       working-directory: complete/
-      run:  mvn -B test
-    - name: Generate coverage report
+      run: mvn -B test
+    - name: Generate code coverage report
       working-directory: complete/
       run: mvn -B jacoco:report
       
+
+  code_quality:
+    needs: [unit_test]
+    runs-on: [ubuntu-latest]
+    
+    steps:
+    - uses: actions/cache@v1.1.0
+      with:
+        path: complete/target/
+        key: ${{ runner.os }}
+    - name: Code Quality
+      run: mvn -B sonar:sonar
+      working-directory: complete/
