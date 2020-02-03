@@ -51,3 +51,5 @@ jobs:
     - name: Code Quality
       run: mvn -B sonar:sonar
       working-directory: complete/
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
